@@ -1,0 +1,34 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: "frontend"
+spec:
+  template: 
+    metadata:
+      labels:
+        name: "frontend"
+    spec:
+      containers:
+        - name: "login-v2"
+          image: "mcovglobal.azurecr.io/mcov-pl/devops/php-login-site:latest"
+          ports:
+            - containerPort: 80
+              protocol: "TCP"
+      imagePullSecrets:
+      - name: acr-secret
+  replicas: 2
+  triggers:
+    - type: "ConfigChange" 
+    - type: "ImageChange" 
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - "login-v2"
+        from:
+          kind: "ImageStreamTag"
+          name: "php-login-site:latest"
+  strategy: 
+    type: "Rolling"
+  paused: false 
+  revisionHistoryLimit: 2 
+  minReadySeconds: 0 
