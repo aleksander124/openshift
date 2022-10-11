@@ -1,0 +1,45 @@
+clusterRoles:
+- name: administrator
+  rules:
+    - apiGroups:
+      - "*"
+      resources:
+      - "*"
+      verbs:
+      - "*"
+- name: user
+  rules:
+    - apiGroups:
+      - "*"
+      resources:
+      - "namespaces"
+      verbs:
+      - "get"
+      - "list"
+      - "watch"
+- name: ado-sc-creator
+  rules:
+    - apiGroups:
+      - ""
+      resources:
+      - "configmaps"
+      - "namespaces"
+      - "secrets"
+      verbs:
+      - "list"
+      - "get"
+- name: monitoring-software
+  rules:
+    - apiGroups:
+      - "*"
+      resources:
+      - pods
+      - nodes
+      - deployments
+      - apiservices
+      - componentstatuses
+      - namespaces
+      verbs:
+      - get
+      - list
+      - watch
