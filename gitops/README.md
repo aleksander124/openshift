@@ -1,1 +1,0 @@
-Repository for testing gitops for openshift solution
