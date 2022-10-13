@@ -1,26 +1,16 @@
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: new-test-namespace-limit.yaml
-  namespace: new-test-namespace
+  name: limits
+  namespace: dev
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   limits:
-  - max:
-      ephemeral-storage: "5Gi"
-      cpu: "300m"
-      memory: "300Mi"
-    min:
-      ephemeral-storage: "10Mi"
-      cpu: "1m"
-      memory: "1Mi"
-    default:
-      ephemeral-storage: "1Gi"
-      cpu: "200m"
-      memory: "200Mi"
+  - default:
+      cpu: 200m
+      memory: 512Mi
     defaultRequest:
-      ephemeral-storage: "10Mi"
-      cpu: "10m"
-      memory: "10Mi"
-    type: "Container"
+      cpu: 100m
+      memory: 256Mi
+    type: Container
