@@ -1,6 +1,6 @@
-{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/%s/**.yaml") }}
+{{ range $path, $_ :=  $.Files.Glob  "namespace-spec/**.yaml" }}
 {{ $ns := ($.Files.Get $path ) | fromYaml }}
-
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -9,7 +9,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     argocd.argoproj.io/managed-by: openshift-gitops
-
+{{ end }}
 # {{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/openshift/**.yaml" .Values.cluster ) }}
 # {{ $ns := ($.Files.Get $path ) | fromYaml }}
 # ---
