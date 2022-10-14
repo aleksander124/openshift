@@ -1,4 +1,4 @@
-{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/%s/**.yaml" .Values.cluster ) }}
+{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/%s/**.yaml") }}
 {{ $ns := ($.Files.Get $path ) | fromYaml }}
 
 apiVersion: v1
