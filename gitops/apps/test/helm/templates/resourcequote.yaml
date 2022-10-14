@@ -16,7 +16,7 @@
 #     resourcequotas: {{ .Values.quota.resourcequotas | default "1"}}
 #     services: {{ .Values.quota.services | default "5"}}
 
-{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/**.yaml" .Values.cluster ) }}
+{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/%s/**.yaml" .Values.cluster ) }}
 {{ $ns := ($.Files.Get $path ) | fromYaml }}
 {{- if $ns.resourceQuote }}
 ---

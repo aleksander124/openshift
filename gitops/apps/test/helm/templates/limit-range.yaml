@@ -15,7 +15,7 @@
 #       memory: {{ .Values.limits.defaultRequest.memory | default "256Mi"}}
 #     type: {{ .Values.limits.type | default "Container" }}
 
-{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/**.yaml" .Values.cluster ) }}
+{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/%s/**.yaml" .Values.cluster ) }}
 {{ $ns := ($.Files.Get $path ) | fromYaml }}
 {{- if $ns.limitRange }}
 ---
