@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./images/oc.jpeg" alt="Openshift" />
+  <img src="./images/oc.png" alt="Openshift" />
 
   &#xa0;
 
