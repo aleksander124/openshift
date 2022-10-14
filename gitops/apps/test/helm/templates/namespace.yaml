@@ -1,7 +1,10 @@
+{{ range $path, $_ :=  $.Files.Glob  (printf "namespace-spec/%s/**.yaml" .Values.cluster ) }}
+{{ $ns := ($.Files.Get $path ) | fromYaml }}
+
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: {{ .Values.namespace }}
+  name: {{ $ns.name }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
