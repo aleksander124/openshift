@@ -1,0 +1,15 @@
+{{ range $path, $_ :=  $.Files.Glob  "namespace-spec/**.yaml" }}
+{{ $ns := ($.Files.Get $path ) | fromYaml }}
+{{- if $ns.limitRange }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{ $ns.name }}-limit-range
+  namespace: {{ $ns.name }}
+spec:
+  {{- with $ns.limitRange }}
+  {{- toYaml .  | nindent 2 }}
+  {{- end }}
+{{- end }}
+{{- end }}

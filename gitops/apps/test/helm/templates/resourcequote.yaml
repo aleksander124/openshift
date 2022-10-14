@@ -1,0 +1,16 @@
+{{ range $path, $_ :=  $.Files.Glob  "namespace-spec/**.yaml" }}
+{{ $ns := ($.Files.Get $path ) | fromYaml }}
+{{- if $ns.resourceQuote }}
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: {{ $ns.name }}-quota
+  namespace: {{ $ns.name }}
+spec:
+  hard:
+    {{- with $ns.resourceQuote }}
+    {{- toYaml .  | nindent 4 }}
+    {{- end }}
+{{- end }}
+{{- end }}
