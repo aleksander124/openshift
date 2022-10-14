@@ -1,12 +1,12 @@
 <div align="center" id="top"> 
-  <img src="./images/oc.png" alt="Openshift" />
+
 
   &#xa0;
 
   <!-- <a href="https://git.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">GIT</h1>
+<h1 align="center">Openshift</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/aleksander124/git?color=56BEB8">
