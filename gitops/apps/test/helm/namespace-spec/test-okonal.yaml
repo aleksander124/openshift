@@ -1,4 +1,4 @@
-name: new-test-namespace
+name: test-okonal
 labels: {}
 resourceQuote:
   requests.cpu: "1"
