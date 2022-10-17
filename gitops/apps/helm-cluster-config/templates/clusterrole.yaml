@@ -1,0 +1,13 @@
+{{- range .Values.clusterRoles }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+rules:
+    {{- with .rules }}
+    {{ toYaml .  | nindent 6 }}
+    {{- end }}
+{{- end }}

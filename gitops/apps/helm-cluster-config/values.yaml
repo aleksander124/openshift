@@ -17,6 +17,17 @@ clusterRoles:
       - "get"
       - "list"
       - "watch"
+- name: ado-sc-creator
+  rules:
+    - apiGroups:
+      - ""
+      resources:
+      - "configmaps"
+      - "namespaces"
+      - "secrets"
+      verbs:
+      - "list"
+      - "get"
 - name: monitoring-software
   rules:
     - apiGroups:
