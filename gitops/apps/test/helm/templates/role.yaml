@@ -6,6 +6,8 @@ kind: Role
 metadata:
   name: deployment
   namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
 rules:
 - apiGroups:
   - "*"
@@ -19,6 +21,8 @@ kind: Role
 metadata:
   name: ns-admin
   namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
 rules:
 - apiGroups:
   - "*"
@@ -64,6 +68,8 @@ kind: Role
 metadata:
   name: ns-reader
   namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
 rules:
 - apiGroups:
   - "*"
