@@ -6,4 +6,4 @@ metadata:
 rules:
 - apiGroups: [""] #specifies core api groups
   resources: ["resourcequotas", "limitranges"]
-  verbs: ["create"]
+  verbs: ["create", "delete"]
