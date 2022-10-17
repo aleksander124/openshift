@@ -1,3 +1,11 @@
 users:
 - name: "okonal"
   clusterRole: "administrator"
+- name: "test-user-1"
+  clusterRole: "user"
+- name: "test-user-2"
+  clusterRole: "user"
+- name: "test-user-3"
+  clusterRole: "administrator"
+- name: "test-user-4"
+  clusterRole: "administrator"
