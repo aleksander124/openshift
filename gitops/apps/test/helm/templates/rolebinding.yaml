@@ -1,0 +1,20 @@
+{{ range $path, $_ :=  $.Files.Glob  "namespace-spec/**.yaml" }}
+{{ $ns := ($.Files.Get $path ) | fromYaml }}
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: deployment
+  namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+subjects:
+- kind: ServiceAccount
+  name: deployment
+  namespace: {{ $ns.name }}
+roleRef:
+  kind: Role
+  name: deployment
+  apiGroup: rbac.authorization.k8s.io
+{{- $n := $ns.name }}
+{{- range $ns.ns_admins }}
