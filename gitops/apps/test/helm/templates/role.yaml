@@ -1,0 +1,93 @@
+{{ range $path, $_ :=  $.Files.Glob  "namespace-spec/**.yaml" }}
+{{ $ns := ($.Files.Get $path ) | fromYaml }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: deployment
+  namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ns-admin
+  namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - deployments
+  - deployments/scale
+  - pods
+  - pods/exec
+  - replicasets
+  - services
+  - secrets 
+  - configmaps
+  - ingresses
+  - jobs
+  - cronjobs
+  - horizontalpodautoscalers
+  verbs:
+  - get
+  - watch
+  - list
+  - create
+  - delete
+  - patch
+  - update
+- apiGroups:
+  - "*"
+  resources:
+  - serviceaccounts
+  - limitranges
+  - resourcequotas
+  - roles
+  - rolebindings
+  - pods/log
+  - deployments/status
+  - events
+  verbs:
+  - get
+  - watch
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ns-reader
+  namespace: {{ $ns.name }}
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - deployments
+  - deployments/status
+  - pods
+  - replicasets
+  - services
+  - configmaps
+  - ingresses
+  - horizontalpodautoscalers
+  - limitranges
+  - resourcequotas
+  - pods/log
+  - events
+  verbs:
+  - get
+  - watch
+  - list
+{{- end }}
