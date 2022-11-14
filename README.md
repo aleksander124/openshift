@@ -1,5 +1,4 @@
-<div align="center" id="top"> 
-
+<div align="center" id="top">
 
   &#xa0;
 
@@ -26,14 +25,14 @@
 
 <!-- Status -->
 
-<h4 align="center"> 
-	🚧  GIT 🚀 Under construction...  🚧
-</h4> 
+<h4 align="center">
+ 🚧  GIT 🚀 Under construction...  🚧
+</h4>
 
-<hr> 
+<hr>
 
 <p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#dart-about">About</a> &#xa0; | &#xa0;
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
@@ -64,17 +63,13 @@ The following tools were used in this project:
 - [Config and templates](https://reactnative.dev/)
 - [GitOps](https://reactnative.dev/)
 
-
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-
-
 ## :memo: License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE) file.
-
 
 Made with :heart: by <a href="https://github.com/aleksander124" target="_blank">Aleksander Okon</a>
 
