@@ -9,7 +9,7 @@
 <h1 align="center">Openshift</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/aleksander124/git?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/aleksander124/openshift/git?color=56BEB8">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/aleksander124/git?color=56BEB8">
 

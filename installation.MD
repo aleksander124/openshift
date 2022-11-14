@@ -80,6 +80,6 @@ The installation configuration file transforms into the Kubernetes manifests. Th
 
 1. Change to the directory that contains the installation program and generate the Kubernetes manifests for the cluster:
 
-```bash
+```shell
 ./openshift-install create manifests --dir <installation_directory>
 ```
