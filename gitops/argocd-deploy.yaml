@@ -1,0 +1,267 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"ArgoCD","metadata":{"annotations":{},"name":"argocd-admin","namespace":"argocd-admin"},"spec":{}}
+  resourceVersion: '30612526'
+  name: argocd-admin
+  uid: 7d27ee27-59ff-46f1-bd75-fd96698f7fd0
+  creationTimestamp: '2023-02-14T08:04:19Z'
+  generation: 19
+  managedFields:
+    - apiVersion: argoproj.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+        'f:spec': {}
+      manager: kubectl-client-side-apply
+      operation: Update
+      time: '2023-02-14T08:04:19Z'
+    - apiVersion: argoproj.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"argoproj.io/finalizer"': {}
+        'f:spec':
+          'f:initialSSHKnownHosts': {}
+          'f:rbac': {}
+          'f:repo': {}
+          'f:redis': {}
+          'f:tls':
+            .: {}
+            'f:ca': {}
+          'f:ha': {}
+          'f:grafana':
+            .: {}
+            'f:enabled': {}
+            'f:ingress':
+              .: {}
+              'f:enabled': {}
+            'f:route':
+              .: {}
+              'f:enabled': {}
+          'f:controller':
+            .: {}
+            'f:processors': {}
+            'f:sharding': {}
+          'f:notifications':
+            .: {}
+            'f:enabled': {}
+          'f:server':
+            .: {}
+            'f:autoscale':
+              .: {}
+              'f:enabled': {}
+            'f:grpc':
+              .: {}
+              'f:ingress':
+                .: {}
+                'f:enabled': {}
+            'f:ingress':
+              .: {}
+              'f:enabled': {}
+            'f:route': {}
+            'f:service':
+              .: {}
+              'f:type': {}
+          'f:prometheus':
+            .: {}
+            'f:enabled': {}
+            'f:ingress':
+              .: {}
+              'f:enabled': {}
+            'f:route':
+              .: {}
+              'f:enabled': {}
+      manager: manager
+      operation: Update
+      time: '2023-02-14T08:04:20Z'
+    - apiVersion: argoproj.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:server':
+            'f:route':
+              'f:tls':
+                .: {}
+                'f:insecureEdgeTerminationPolicy': {}
+                'f:termination': {}
+      manager: kubectl-patch
+      operation: Update
+      time: '2023-02-14T08:12:07Z'
+    - apiVersion: argoproj.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:dex':
+            .: {}
+            'f:groups': {}
+            'f:openShiftOAuth': {}
+          'f:ha':
+            'f:enabled': {}
+            'f:resources':
+              .: {}
+              'f:limits':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+              'f:requests':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+          'f:rbac':
+            'f:defaultPolicy': {}
+            'f:policy': {}
+            'f:scopes': {}
+          'f:redis':
+            'f:resources':
+              .: {}
+              'f:limits':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+              'f:requests':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+          'f:repo':
+            'f:resources':
+              .: {}
+              'f:limits':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+              'f:requests':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+          'f:server':
+            'f:insecure': {}
+            'f:resources':
+              .: {}
+              'f:limits':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+              'f:requests':
+                .: {}
+                'f:cpu': {}
+                'f:memory': {}
+            'f:route':
+              'f:enabled': {}
+      manager: Mozilla
+      operation: Update
+      time: '2023-02-14T08:32:10Z'
+    - apiVersion: argoproj.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:dex': {}
+          'f:repo': {}
+          'f:redis': {}
+          'f:phase': {}
+          .: {}
+          'f:server': {}
+          'f:applicationController': {}
+          'f:host': {}
+          'f:ssoConfig': {}
+      manager: manager
+      operation: Update
+      subresource: status
+      time: '2023-02-14T08:32:41Z'
+  namespace: argocd-admin
+  finalizers:
+    - argoproj.io/finalizer
+spec:
+  server:
+    autoscale:
+      enabled: false
+    grpc:
+      ingress:
+        enabled: false
+    ingress:
+      enabled: false
+    insecure: true
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 125m
+        memory: 128Mi
+    route:
+      enabled: true
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
+    service:
+      type: ''
+  grafana:
+    enabled: false
+    ingress:
+      enabled: false
+    route:
+      enabled: false
+  notifications:
+    enabled: false
+  prometheus:
+    enabled: false
+    ingress:
+      enabled: false
+    route:
+      enabled: false
+  initialSSHKnownHosts: {}
+  rbac:
+    defaultPolicy: 'role:readonly'
+    policy: |
+      g, openshiftadmins, role:admin
+    scopes: '[groups]'
+  repo:
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+  dex:
+    groups:
+      - openshiftadmins
+    openShiftOAuth: true
+  ha:
+    enabled: false
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  tls:
+    ca: {}
+  redis:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  controller:
+    processors: {}
+    sharding: {}
+status:
+  applicationController: Running
+  dex: Running
+  host: argocd-admin.apps.openshift.<domain_name>
+  phase: Available
+  redis: Running
+  repo: Running
+  server: Running
+  ssoConfig: Success
