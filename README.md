@@ -25,12 +25,6 @@
 
 <!-- Status -->
 
-<h4 align="center">
- 🚧  GIT 🚀 Under construction...  🚧
-</h4>
-
-<hr>
-
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0;
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
@@ -62,10 +56,6 @@ The following tools were used in this project:
 - [ArgoCD](https://pt-br.reactjs.org/)
 - [Config and templates](https://reactnative.dev/)
 - [GitOps](https://reactnative.dev/)
-
-## :white_check_mark: Requirements ##
-
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
 ## :memo: License ##
 
