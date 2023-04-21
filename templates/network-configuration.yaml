@@ -1,0 +1,24 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: vlan-policy
+spec:
+  nodeSelector: 
+    node-role.kubernetes.io/worker: "" 
+  desiredState:
+    interfaces:
+      - name: bond0.10 
+        type: vlan
+        state: up
+        ipv4: 
+          enabled: false
+          dhcp: false
+        vlan:
+          base-iface: bond0
+          id: 10
+      - name: br0.10
+        type: linux-bridge
+        state: up
+        bridge:
+          port:
+          - name: bond0.10
