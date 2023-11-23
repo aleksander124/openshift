@@ -1,0 +1,14 @@
+{{ range $path, $_ :=  $.Files.Glob  (printf "instances/**.yml") }}
+{{ $inst := ($.Files.Get $path ) | fromYaml }}
+---
+kind: KafkaBridge
+apiVersion: kafka.strimzi.io/v1beta2
+metadata:
+  name: {{ $inst.name }}-bridge
+  namespace: {{ $inst.namespace }}
+spec:
+  replicas: 1
+  bootstrapServers: '{{ $inst.name }}-kafka-bootstrap:9092'
+  http:
+    port: 8080
+{{ end }}
