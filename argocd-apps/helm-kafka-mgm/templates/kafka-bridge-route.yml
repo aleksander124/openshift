@@ -1,0 +1,16 @@
+{{ range $path, $_ :=  $.Files.Glob  (printf "instances/**.yml") }}
+{{ $inst := ($.Files.Get $path ) | fromYaml }}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ $inst.name }}-bridge-route
+  namespace: {{ $inst.namespace }}
+spec:
+  #host: my-bridge.io
+  to:
+    kind: Service
+    name: {{ $inst.name }}-bridge-bridge-service
+  port:
+    targetPort: rest-api
+{{ end }}
