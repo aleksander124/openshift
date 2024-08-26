@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-producer-config
+data:
+  producer.properties: |
+    bootstrap.servers=<host_ip>:<port>
+    # Can use multiple bootstrap servers separated by comma
+    compression.type=none
+    # Add other properties here
