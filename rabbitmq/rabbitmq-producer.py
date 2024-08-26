@@ -1,36 +1,47 @@
 import pika
 import sys
+import time
 
 def send_message():
-    rabbitmq_host = '10.6.12.137'
+    rabbitmq_hosts = ['<RABBITMQ_HOST1>', '<RABBITMQ_HOST2>', '<RABBITMQ_HOST3>']
     rabbitmq_port = 32111
     rabbitmq_user = 'dev-admin'
     rabbitmq_password = 'dev-admin'
-    queue_name = 'test_queue'
+    queue_name = 'test-quorum'
     message = "Hello, RabbitMQ!"
+    number_of_messages = 50
 
     credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
 
+    # Create a list of connection parameters for each RabbitMQ host
+    connection_params = [
+        pika.ConnectionParameters(
+            host=host,
+            port=rabbitmq_port,
+            virtual_host='dev-test',
+            credentials=credentials
+        ) for host in rabbitmq_hosts
+    ]
+
     try:
-        # Establish connection to RabbitMQ server
-        connection = pika.BlockingConnection(
-            pika.ConnectionParameters(
-                host=rabbitmq_host,
-                port=rabbitmq_port,
-                virtual_host='dev-test',
-                credentials=credentials
-            )
-        )
+        # Establish connection to the first available RabbitMQ server in the cluster
+        connection = pika.BlockingConnection(parameters=connection_params)
         channel = connection.channel()
 
-        # Declare a queue (if it doesn't already exist)
-        channel.queue_declare(queue=queue_name)
+        # Declare a quorum queue
+        channel.queue_declare(queue=queue_name, durable=True, arguments={'x-queue-type': 'quorum'})
 
-        # Publish a message to the queue
-        channel.basic_publish(exchange='',
-                              routing_key=queue_name,
-                              body=message)
-        print(f" [x] Sent '{message}'")
+        for i in range(number_of_messages):
+            message_body = f"{message} #{i + 1}"
+            properties = pika.BasicProperties(delivery_mode=2)  # Make message persistent
+
+            # Publish a persistent message to the queue
+            channel.basic_publish(exchange='',
+                                  routing_key=queue_name,
+                                  body=message_body,
+                                  properties=properties)
+            print(f" [x] Sent '{message_body}'")
+            time.sleep(1)
 
     except pika.exceptions.AMQPConnectionError as e:
         print(f"Error connecting to RabbitMQ: {e}")
