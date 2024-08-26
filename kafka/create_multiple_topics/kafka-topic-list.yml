@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafka-producer
+spec:
+  containers:
+    - name: kafka-producer
+      image: quay.io/strimzi/kafka:0.40.0-kafka-3.6.1
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+      command: ["bin/kafka-topics.sh"]
+      args: ["--bootstrap-server", "$(bootstrap-server)", "--list"]
+      env:
+        - name: bootstrap-server
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: bootstrap-server
+  restartPolicy: Never
