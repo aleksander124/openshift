@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafka-producer
+spec:
+  containers:
+    - name: kafka-producer
+      image: quay.io/strimzi/kafka:0.40.0-kafka-3.6.1
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+      command: ["/bin/bash", "-c"]
+      args:
+        - |
+          for topic in $(echo "${TOPIC_NAMES}" | tr ',' '\n'); do
+            bin/kafka-topics.sh --bootstrap-server "${BOOTSTRAP_SERVER}" --create --replication-factor 3 --partitions "${PARTITIONS}" --topic "$topic" --config retention.ms=518400000
+          done
+      env:
+        - name: BOOTSTRAP_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: bootstrap-server
+        - name: PARTITIONS
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: partitions
+        - name: TOPIC_NAMES
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: topic-names
+  restartPolicy: Never

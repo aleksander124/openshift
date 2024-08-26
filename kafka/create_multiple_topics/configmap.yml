@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-config
+data:
+  bootstrap-server: "<host_ip>:<port>" # can use multiple bootstrap servers separated by comma
+  partitions: "5"
+  topic-names: |
+    topic1
+    topic2
