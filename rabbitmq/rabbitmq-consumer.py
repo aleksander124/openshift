@@ -4,7 +4,7 @@ def callback(ch, method, properties, body):
     print(f" [x] Received '{body.decode()}'")
 
 def consume_messages():
-    rabbitmq_host = '<RABBITMQ_HOST>'
+    rabbitmq_host = '10.6.12.137'
     rabbitmq_port = 32111
     rabbitmq_user = 'dev-admin'
     rabbitmq_password = 'dev-admin'

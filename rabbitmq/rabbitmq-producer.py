@@ -3,7 +3,7 @@ import sys
 import time
 
 def send_message():
-    rabbitmq_hosts = ['<RABBITMQ_HOST1>', '<RABBITMQ_HOST2>', '<RABBITMQ_HOST3>']
+    rabbitmq_hosts = ['10.6.12.137', '10.6.12.138', '10.6.12.139']
     rabbitmq_port = 32111
     rabbitmq_user = 'dev-admin'
     rabbitmq_password = 'dev-admin'
